@@ -1,0 +1,55 @@
+pre.asymptote {
+  font-family: "Bitstream Vera Sans Mono", "courier new", sans-serif;
+  /* padding:0; */
+  /* margin:0; */
+  /* padding-top:1em; */
+  color: #eedc82;
+  /* background: #2f4f4f; */
+  background: #222222;
+}
+pre.asymptote ._pcss {
+  color: #fff;
+}
+pre.asymptote ._bt {
+  color: #b0c4de;
+}
+pre.asymptote ._cm {
+  color: #ff7f24;
+}
+pre.asymptote ._cd {
+  color: #ff7f24;
+}
+pre.asymptote ._cn {
+  color: #7fffd4;
+}
+pre.asymptote ._fn {
+  color: #87cefa;
+}
+pre.asymptote ._kw {
+  color: #00ffff;
+}
+pre.asymptote ._st,
+pre.asymptote .doc {
+  color: #ffa07a;
+}
+pre.asymptote .type {
+  color: #98fb98;
+}
+pre.asymptote ._vn {
+  color: #eedd82;
+}
+pre.asymptote ._shenl {
+  color: #ffa07a;
+}
+pre.asymptote ._flm {
+  color: #deb887;
+}
+pre.asymptote ._fls {
+  color: #d3d3d3;
+}
+pre.asymptote ._flsub {
+  font-size: 80%;
+}
+pre.asymptote ._flsup {
+  font-size: 80%;
+}
