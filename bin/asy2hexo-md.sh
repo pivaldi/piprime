@@ -140,20 +140,26 @@ for fic in $(get_asy_files) ; do
     tags=''
     space=''
 
-    for tag in $(cat ${srcFileTag}); do
-        tag=$(
-            echo $tag | awk -F '|' '{print $3}' | \
-                awk -F '|' '{for(i=1;i<=NF;i++)sub(/./,toupper(substr($i,1,1)),$i)}2' | \
-                tr ' /' '__'
-           )
 
-        $isFirstTag && firstTag=$tag
-        tags="${tags}${space}${tag}"
-        space=' '
-        isFirstTag=false
-        tagsStr="${tagsStr}
-- #Asy${tag}"
-    done
+    [ -e ${srcFileTag} ] && {
+        for tag in $(cat ${srcFileTag}); do
+            tag=$(
+                echo $tag | awk -F '|' '{print $3}' | \
+                    awk -F '|' '{for(i=1;i<=NF;i++)sub(/./,toupper(substr($i,1,1)),$i)}2' | \
+                    tr ' /' '__'
+               )
+
+            [ "$tag" == "" ] || {
+                $isFirstTag && firstTag=$tag
+                tags="${tags}${space}${tag}"
+                space=' '
+                isFirstTag=false
+                tagsStr="${tagsStr}
+- \"Asy-${tag}\""
+            }
+
+        done
+    }
 
     # le tag ADDPDF permet de mettre un lien vers le fichier .pdf
     COMB="s/ADDPDF/<a href=\"###DIRNAME###${destAssetPath}/out.pdf\">${srcFileNameNoExt}.pdf<\/a>/g"
@@ -170,7 +176,7 @@ for fic in $(get_asy_files) ; do
         postId=$(cat ${srcFilePostId})
 
         partialTitle="$category $firstTag"
-        [ $category == $firstTag ] && partialTitle=$category
+        [ "$category" == "$firstTag" ] && partialTitle=$category
 
         ## Not used now because of problem whith rel url
         #  See https://hexo.io/docs/asset-folders.html
@@ -179,13 +185,19 @@ for fic in $(get_asy_files) ; do
         ## Using this one instead, waiting for best solution
         imgMdk="{% asset_img out.png "${srcFileNameNoExt}" %}"
 
+        [ "$tagsStr" == "" ] || {
+            tagsStr="tags:${tagsStr}"
+        }
+
+        sleep 2
         cat>"$destFileMd"<<EOF
 title: "Asymptote ${partialTitle} -- ${srcFileNameNoExt}"
-date: 2013/7/13 $(date "+%H %M %S %N")
+date: 2013-7-13 $(date "+%H:%M:%S")
 comments: false
+id: $postId
 categories:
 - [Programming, Asymptote, $category]
-tags:${tagsStr}
+${tagsStr}
 ---
 
 $imgMdk

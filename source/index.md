@@ -1,6 +1,6 @@
 ---
-title: Welcome to <a href="//www2.piprime.fr">piprime.fr</a>
+title: ❤ 🌞 🌻 - Welcome to <a style="text-decoration:none;border:none" href="//www2.piprime.fr">௫’</a> - 🙉 🌠 ❤
 date: 2018-04-29 22:17:30
 ---
 
-# Home page title
+# The Universal Web Site of Light Thinking
