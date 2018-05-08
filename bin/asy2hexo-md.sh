@@ -21,6 +21,10 @@
 
 SRC_DIR=~/code/pi/asymptote/exemples/src
 DEST_DIR=~/code/pi/hexo-blog/source/_posts/en/asymptote
+DEST_MEDIA_BASE_URL=/media/asymptote
+DEST_MEDIA_DIR=~/code/pi/hexo-blog/source$DEST_MEDIA_BASE_URL
+
+rm -rf $DEST_DIR && rm -rf $DEST_MEDIA_DIR
 
 ## Commande pour asymptote
 ASYCOM=/usr/local/bin/asy
@@ -128,8 +132,9 @@ for fic in $(get_asy_files) ; do
     currentDestDir="${DEST_DIR}/${srcFileDirName}"
     destFileNoExt="${DEST_DIR}/${srcFileDirName}/${srcFileNameNoExt}"
     destFileMd="${destFileNoExt}.md"
-    destAssetPath="${destFileNoExt}"
     category=$(echo ${srcFileDirName} | awk 'sub(/./,toupper(substr($1,1,1)),$1)')
+    destAssetPath="${DEST_MEDIA_DIR}/${srcFileDirName}"
+    destAssetBaseURL="${DEST_MEDIA_BASE_URL}/${srcFileDirName}"
 
     mkdirIfNotExits "$currentDestDir"
     mkdirIfNotExits "$destAssetPath"
@@ -178,25 +183,26 @@ for fic in $(get_asy_files) ; do
         partialTitle="$category $firstTag"
         [ "$category" == "$firstTag" ] && partialTitle=$category
 
+        outPutFileName="${srcFileNameNoExt}.png"
+
         ## Not used now because of problem whith rel url
         #  See https://hexo.io/docs/asset-folders.html
-        imgMdk="![alt asymptote ${category} ${tags} ${srcFileNameNoExt}](out.png "${srcFileNameNoExt}")"
+        imgMdk="![alt asymptote ${category} ${tags} ${srcFileNameNoExt}](${destAssetBaseURL}/${outPutFileName} \"${srcFileNameNoExt}\")"
 
         ## Using this one instead, waiting for best solution
-        imgMdk="{% asset_img out.png "${srcFileNameNoExt}" %}"
+        # imgMdk="{% asset_img out.png "${srcFileNameNoExt}" %}"
 
         [ "$tagsStr" == "" ] || {
             tagsStr="tags:${tagsStr}"
         }
 
-        sleep 2
+        sleep 1
         cat>"$destFileMd"<<EOF
 title: "Asymptote ${partialTitle} -- ${srcFileNameNoExt}"
 date: 2013-7-13 $(date "+%H:%M:%S")
-comments: false
 id: $postId
 categories:
-- [Programming, Asymptote, $category]
+- [Tech, Programming, Asymptote, $category]
 ${tagsStr}
 ---
 
@@ -204,7 +210,7 @@ $imgMdk
 $content
 EOF
 
-cp "${srcFileNoExt}.png" "${destAssetPath}/out.png"
+cp "${srcFileNoExt}.png" "${destAssetPath}/${outPutFileName}"
 
 # fi
 

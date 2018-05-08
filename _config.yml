@@ -28,7 +28,7 @@ markdown:
 # Site
 title: PIPRIME.FR
 subtitle:
-description: Aka ௫
+description: <span style="font-size:100px;color:#ddd;background-color:#222;padding:43px;">௹</span>
 # description: π ≈ 3.141592653589…
 keywords:
 author: Philippe Ivaldi
@@ -61,7 +61,7 @@ titlecase: false # Transform title into titlecase
 external_link: false # Open external links in new tab
 filename_case: 0
 render_drafts: false
-post_asset_folder: true
+post_asset_folder: false
 relative_link: false
 future: false
 highlight:
