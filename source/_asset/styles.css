@@ -78,3 +78,220 @@ pre.asymptote ._flsub {
 pre.asymptote ._flsup {
   font-size: 80%;
 }
+
+/* admonition */
+@charset "UTF-8";
+.admonition > .admonition-title::before {
+  /* font-family: "Material Icons"; */
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  line-height: 1;
+  text-transform: none;
+  white-space: nowrap;
+  speak: none;
+  word-wrap: normal;
+  direction: ltr;
+}
+
+.admonition {
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12),
+    0 3px 1px -2px rgba(0, 0, 0, 0.2);
+  position: relative;
+  margin: 1.5625em 0;
+  padding: 0 1.2rem;
+  border-left: 0.4rem solid blue;
+  border-radius: 0.2rem;
+  /* font-size: 2em; */
+  overflow: auto;
+}
+[dir="rtl"] .admonition {
+  border-right: 0.4rem solid blue;
+  border-left: none;
+}
+html .admonition > :last-child {
+  margin-bottom: 1.2rem;
+}
+.admonition .admonition {
+  margin: 1em 0;
+}
+.admonition > .admonition-title {
+  margin: 0 -1.2rem;
+  padding: 0.4rem 1.2rem 0.4rem 2rem;
+  border-bottom: 0.1rem solid rgba(0, 0, 255, 0.1);
+  background-color: rgba(0, 0, 255, 0.1);
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+[dir="rtl"] .admonition > .admonition-title {
+  padding: 0.8rem 4rem 0.8rem 1.2rem;
+}
+.admonition > .admonition-title:last-child {
+  margin-bottom: 0;
+}
+.admonition > .admonition-title::before {
+  position: absolute;
+  left: 1.2rem;
+  color: blue;
+  font-size: 1.6rem;
+  content: "⚑";
+}
+[dir="rtl"] .admonition > .admonition-title::before {
+  right: 1.2rem;
+  left: initial;
+}
+.admonition.abstract {
+  border-left-color: blue;
+}
+[dir="rtl"] .admonition.abstract {
+  border-right-color: blue;
+}
+.admonition.abstract > .admonition-title {
+  border-bottom: 0.1rem solid rgba(0, 0, 255, 0.1);
+  background-color: rgba(0, 0, 255, 0.1);
+}
+.admonition.abstract > .admonition-title::before {
+  color: blue;
+  content: "@1";
+}
+.admonition.info {
+  border-left-color: #7986cb;
+}
+[dir="rtl"] .admonition.info {
+  border-right-color: #7986cb;
+}
+.admonition.info > .admonition-title {
+  border-bottom: 0.1rem solid rgba(0, 0, 255, 0.1);
+  background-color: rgba(0, 0, 255, 0.1);
+}
+.admonition.info > .admonition-title::before {
+  color: #7986cb;
+  /* content: "✔"; */
+  content: "";
+}
+.admonition.tip {
+  border-left-color: teal;
+}
+[dir="rtl"] .admonition.tip {
+  border-right-color: teal;
+}
+.admonition.tip > .admonition-title {
+  border-bottom: 0.1rem solid rgba(0, 128, 128, 0.1);
+  background-color: rgba(0, 128, 128, 0.1);
+}
+.admonition.tip > .admonition-title::before {
+  color: teal;
+  content: "@@";
+}
+.admonition.success {
+  border-left-color: green;
+}
+[dir="rtl"] .admonition.success {
+  border-right-color: green;
+}
+.admonition.success > .admonition-title {
+  border-bottom: 0.1rem solid rgba(0, 128, 0, 0.1);
+  background-color: rgba(0, 128, 0, 0.1);
+}
+.admonition.success > .admonition-title::before {
+  color: green;
+  content: "@3";
+}
+.admonition.question {
+  border-left-color: green;
+}
+[dir="rtl"] .admonition.question {
+  border-right-color: green;
+}
+.admonition.question > .admonition-title {
+  border-bottom: 0.1rem solid rgba(0, 128, 0, 0.1);
+  background-color: rgba(0, 128, 0, 0.1);
+}
+.admonition.question > .admonition-title::before {
+  color: green;
+  content: "@4";
+}
+.admonition.warning {
+  border-left-color: orange;
+}
+[dir="rtl"] .admonition.warning {
+  border-right-color: orange;
+}
+.admonition.warning > .admonition-title {
+  border-bottom: 0.1rem solid rgba(255, 165, 0, 0.1);
+  background-color: rgba(255, 165, 0, 0.1);
+}
+.admonition.warning > .admonition-title::before {
+  color: orange;
+  content: "@5";
+}
+.admonition.failure {
+  border-left-color: red;
+}
+[dir="rtl"] .admonition.failure {
+  border-right-color: red;
+}
+.admonition.failure > .admonition-title {
+  border-bottom: 0.1rem solid rgba(255, 0, 0, 0.1);
+  background-color: rgba(255, 0, 0, 0.1);
+}
+.admonition.failure > .admonition-title::before {
+  color: red;
+  content: "⚡";
+}
+.admonition.danger {
+  border-left-color: red;
+}
+[dir="rtl"] .admonition.danger {
+  border-right-color: red;
+}
+.admonition.danger > .admonition-title {
+  border-bottom: 0.1rem solid rgba(255, 0, 0, 0.1);
+  background-color: rgba(255, 0, 0, 0.1);
+}
+.admonition.danger > .admonition-title::before {
+  color: red;
+  content: "❗";
+}
+.admonition.bug {
+  border-left-color: pink;
+}
+[dir="rtl"] .admonition.bug {
+  border-right-color: pink;
+}
+.admonition.bug > .admonition-title {
+  border-bottom: 0.1rem solid rgba(255, 192, 203, 0.1);
+  background-color: rgba(255, 192, 203, 0.1);
+}
+.admonition.bug > .admonition-title::before {
+  color: pink;
+  content: "@8";
+}
+.admonition.example {
+  border-left-color: purple;
+}
+[dir="rtl"] .admonition.example {
+  border-right-color: purple;
+}
+.admonition.example > .admonition-title {
+  border-bottom: 0.1rem solid rgba(128, 0, 128, 0.1);
+  background-color: rgba(128, 0, 128, 0.1);
+}
+.admonition.example > .admonition-title::before {
+  color: purple;
+  content: "@9";
+}
+.admonition.quote {
+  border-left-color: grey;
+}
+[dir="rtl"] .admonition.quote {
+  border-right-color: grey;
+}
+.admonition.quote > .admonition-title {
+  border-bottom: 0.1rem solid rgba(128, 128, 128, 0.1);
+  background-color: rgba(128, 128, 128, 0.1);
+}
+.admonition.quote > .admonition-title::before {
+  color: grey;
+  content: "@10";
+}

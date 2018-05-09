@@ -35,169 +35,164 @@ CONVERTCOM=/usr/bin/convert
 EXTIMAG="png" #format des images sorties par defaut.
 EXTASY="eps"  #format de sortie de asy par defaut
 # sauf si le code contient le mot "opacity" (=> pdf))
-MAXW=200      # Largeur maximale des images
-MAXH=$MAXW    # Hauteur maximale des images
-AFFCODE=true  # par defaut chaque image est suivie du code qui la genere. (option -nocode pour changer)
+MAXW=200     # Largeur maximale des images
+MAXH=$MAXW   # Hauteur maximale des images
+AFFCODE=true # par defaut chaque image est suivie du code qui la genere. (option -nocode pour changer)
 
 GENCODE=true
 ODOC=false
 ANIM=false
 
-while true
-do
-    case $1 in
-        -gif)
-	    EXTIMAG="gif"
-            ;;
-        -png)
-	    EXTIMAG="png"
-            ;;
-        -pdf)# Force l'utilisation du pdf
-            EXTASY="pdf"
-            ;;
-        -odoc)# On est dans le répertoire des exemples officiels.
-            ODOC=true
-            nofind=$2
-            ;;
-        -anim)# On est dans le répertoire des animations.
-            ANIM=true
-            ;;
-        -nocode)
-            EXTASY="pdf"
-            GENCODE=false # index.html est remplace par figure-index.html
-            # et les figures pointent sur le pdf correspondant
-            ;;
-        *)
-            break
-            ;;
-    esac
-    shift
+while true; do
+  case $1 in
+    -gif)
+      EXTIMAG="gif"
+      ;;
+    -png)
+      EXTIMAG="png"
+      ;;
+    -pdf) # Force l'utilisation du pdf
+      EXTASY="pdf"
+      ;;
+    -odoc) # On est dans le rï¿½pertoire des exemples officiels.
+      ODOC=true
+      nofind=$2
+      ;;
+    -anim) # On est dans le rï¿½pertoire des animations.
+      ANIM=true
+      ;;
+    -nocode)
+      EXTASY="pdf"
+      GENCODE=false # index.html est remplace par figure-index.html
+      # et les figures pointent sur le pdf correspondant
+      ;;
+    *)
+      break
+      ;;
+  esac
+  shift
 done
 
 ASYCOM=/usr/local/bin/asy
 
-while true
-do
-    case $1 in
-        -gif)
-            EXTIMAG="gif"
-            ;;
-        -png)
-            EXTIMAG="png"
-            ;;
-        -pdf)# Forece l'utilisation du pdf
-            EXTASY="pdf"
-            ;;
-        *)
-            break
-            ;;
-    esac
-    shift
+while true; do
+  case $1 in
+    -gif)
+      EXTIMAG="gif"
+      ;;
+    -png)
+      EXTIMAG="png"
+      ;;
+    -pdf) # Forece l'utilisation du pdf
+      EXTASY="pdf"
+      ;;
+    *)
+      break
+      ;;
+  esac
+  shift
 done
 
 # Recupere le texte qui se trouve entre les balises <body> et </body>
-function bodyinner()
-{
-    cat $1 | awk -v FS="^Z" "/<body>/,/<\/body>/" | sed "s/<\/*body>//g" | sed 's/^ *<pre>/<pre class="asymptote">/g'
+function bodyinner() {
+  cat $1 | awk -v FS="^Z" "/<body>/,/<\/body>/" | sed "s/<\/*body>//g" | sed 's/^ *<pre>/<pre class="asymptote">/g'
 }
 
-function get_asy_files()
-{
-    if $ODOC; then
-        find "$SRC_DIR" -type f -name '*\.asy' $nofind -print | sort -r
-    else
-        find "$SRC_DIR" -name 'fig*\.asy' -type f -print | sort -r
-    fi
+function get_asy_files() {
+  if $ODOC; then
+    find "$SRC_DIR" -type f -name '*\.asy' $nofind -print | sort -r
+  else
+    find "$SRC_DIR" -name 'fig*\.asy' -type f -print | sort -r
+  fi
 }
 
 mkdirIfNotExits() {
-    [ -e "$1" ] || {
-        echo "Creating directory $1"
-        mkdir -p "$1" || exit 1
-    }
+  [ -e "$1" ] || {
+    echo "Creating directory $1"
+    mkdir -p "$1" || exit 1
+  }
 }
 
 CREATECODE=false # Par defaut il n'y a pas a recreer code.xml et index.html
 
-for fic in $(get_asy_files) ; do
-    srcFile="$fic" # Renaming
-    echo "-> Handling $srcFile"
-    srcFileNoExt="${srcFile%.*}"
-    srcFileTag="${srcFileNoExt}.tag"
-    srcFileHtml="${srcFileNoExt}.html"
-    srcFilePostId="${srcFileNoExt}.postid"
-    srcFileNameNoExt=$(basename "$srcFileNoExt")
-    srcFilePath="${fic%/*}"
-    srcFileDirName=$(basename "$srcFilePath")
-    currentDestDir="${DEST_DIR}/${srcFileDirName}"
-    destFileNoExt="${DEST_DIR}/${srcFileDirName}/${srcFileNameNoExt}"
-    destFileMd="${destFileNoExt}.md"
-    category=$(echo ${srcFileDirName} | awk 'sub(/./,toupper(substr($1,1,1)),$1)')
-    destAssetPath="${DEST_MEDIA_DIR}/${srcFileDirName}"
-    destAssetBaseURL="${DEST_MEDIA_BASE_URL}/${srcFileDirName}"
+for fic in $(get_asy_files); do
+  srcFile="$fic" # Renaming
+  echo "-> Handling $srcFile"
+  srcFileNoExt="${srcFile%.*}"
+  srcFileTag="${srcFileNoExt}.tag"
+  srcFileHtml="${srcFileNoExt}.html"
+  srcFilePostId="${srcFileNoExt}.postid"
+  srcFileNameNoExt=$(basename "$srcFileNoExt")
+  srcFilePath="${fic%/*}"
+  srcFileDirName=$(basename "$srcFilePath")
+  currentDestDir="${DEST_DIR}/${srcFileDirName}"
+  destFileNoExt="${DEST_DIR}/${srcFileDirName}/${srcFileNameNoExt}"
+  destFileMd="${destFileNoExt}.md"
+  category=$(echo ${srcFileDirName} | awk 'sub(/./,toupper(substr($1,1,1)),$1)')
+  destAssetPath="${DEST_MEDIA_DIR}/${srcFileDirName}"
+  destAssetBaseURL="${DEST_MEDIA_BASE_URL}/${srcFileDirName}"
 
-    mkdirIfNotExits "$currentDestDir"
-    mkdirIfNotExits "$destAssetPath"
+  mkdirIfNotExits "$currentDestDir"
+  mkdirIfNotExits "$destAssetPath"
 
-    tagsStr=''
-    isFirstTag=true
-    firstTag=''
-    tags=''
-    space=''
+  tagsStr=''
+  isFirstTag=true
+  firstTag=''
+  tags=''
+  space=''
 
+  [ -e ${srcFileTag} ] && {
+    for tag in $(cat ${srcFileTag}); do
+      tag=$(
+        echo $tag | awk -F '|' '{print $3}' |
+          awk -F '|' '{for(i=1;i<=NF;i++)sub(/./,toupper(substr($i,1,1)),$i)}2' |
+          tr ' /' '__'
+      )
 
-    [ -e ${srcFileTag} ] && {
-        for tag in $(cat ${srcFileTag}); do
-            tag=$(
-                echo $tag | awk -F '|' '{print $3}' | \
-                    awk -F '|' '{for(i=1;i<=NF;i++)sub(/./,toupper(substr($i,1,1)),$i)}2' | \
-                    tr ' /' '__'
-               )
-
-            [ "$tag" == "" ] || {
-                $isFirstTag && firstTag=$tag
-                tags="${tags}${space}${tag}"
-                space=' '
-                isFirstTag=false
-                tagsStr="${tagsStr}
+      [ "$tag" == "" ] || {
+        $isFirstTag && firstTag=$tag
+        tags="${tags}${space}${tag}"
+        space=' '
+        isFirstTag=false
+        tagsStr="${tagsStr}
 - \"Asy-${tag}\""
-            }
+      }
 
-        done
-    }
+    done
+  }
 
-    # le tag ADDPDF permet de mettre un lien vers le fichier .pdf
-    COMB="s/ADDPDF/<a href=\"###DIRNAME###${destAssetPath}/out.pdf\">${srcFileNameNoExt}.pdf<\/a>/g"
+  # le tag ADDPDF permet de mettre un lien vers le fichier .pdf
+  COMB="s/ADDPDF/<a href=\"###DIRNAME###${destAssetPath}/out.pdf\">${srcFileNameNoExt}.pdf<\/a>/g"
 
-    # *=======================================================*
-    # *...Creation du fichier .md a partir du fichier .asy....*
-    # *=======================================================*
-    # if [ "${srcFile}" -nt "${destFileMd}" ]; then
-        echo "Creating ${destFileMd}"
-        # content=$(cat ${srcFile})
-        content=$(bodyinner ${srcFileHtml} | sed 's/geometry_dev/geometry/g')
-        # echo $content
-        # exit 0
-        postId=$(cat ${srcFilePostId})
+  # *=======================================================*
+  # *...Creation du fichier .md a partir du fichier .asy....*
+  # *=======================================================*
+  # if [ "${srcFile}" -nt "${destFileMd}" ]; then
+  echo "Creating ${destFileMd}"
+  # content=$(cat ${srcFile})
+  content=$(bodyinner ${srcFileHtml} | sed 's/geometry_dev/geometry/g')
+  # echo $content
+  # exit 0
+  postId=$(cat ${srcFilePostId})
 
-        partialTitle="$category $firstTag"
-        [ "$category" == "$firstTag" ] && partialTitle=$category
+  partialTitle="$category $firstTag"
+  [ "$category" == "$firstTag" ] && partialTitle=$category
 
-        outPutFileName="${srcFileNameNoExt}.png"
+  outPutFileName="${srcFileNameNoExt}.png"
 
-        ## Not used now because of problem whith rel url
-        #  See https://hexo.io/docs/asset-folders.html
-        imgMdk="![alt asymptote ${category} ${tags} ${srcFileNameNoExt}](${destAssetBaseURL}/${outPutFileName} \"${srcFileNameNoExt}\")"
+  ## Not used now because of problem whith rel url
+  #  See https://hexo.io/docs/asset-folders.html
+  imgMdk="![alt asymptote ${category} ${tags} ${srcFileNameNoExt}](${destAssetBaseURL}/${outPutFileName} \"${srcFileNameNoExt}\")"
 
-        ## Using this one instead, waiting for best solution
-        # imgMdk="{% asset_img out.png "${srcFileNameNoExt}" %}"
+  ## Using this one instead, waiting for best solution
+  # imgMdk="{% asset_img out.png "${srcFileNameNoExt}" %}"
 
-        [ "$tagsStr" == "" ] || {
-            tagsStr="tags:${tagsStr}"
-        }
+  [ "$tagsStr" == "" ] || {
+    tagsStr="tags:${tagsStr}"
+  }
 
-        sleep 1
-        cat>"$destFileMd"<<EOF
+  sleep 1
+  cat >"$destFileMd" <<EOF
 title: "Asymptote ${partialTitle} -- ${srcFileNameNoExt}"
 date: 2013-7-13 $(date "+%H:%M:%S")
 id: $postId
@@ -210,8 +205,8 @@ $imgMdk
 $content
 EOF
 
-cp "${srcFileNoExt}.png" "${destAssetPath}/${outPutFileName}"
+  cp "${srcFileNoExt}.png" "${destAssetPath}/${outPutFileName}"
 
-# fi
+  # fi
 
 done

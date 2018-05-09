@@ -11,7 +11,7 @@ markdown:
     breaks: false
     linkify: true
     typographer: true
-    quotes: '«»“”‘’'
+    quotes: '“”‘’'
   plugins:
     - markdown-it-abbr
     - markdown-it-footnote
