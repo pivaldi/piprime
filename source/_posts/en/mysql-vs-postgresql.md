@@ -10,7 +10,7 @@ categories:
 
 {% admonition info Note %}
 In this article the storage engine considered is _InnoDB_ ; It is the
-only one that supports transactions and foreign keys.  
+only one that supports transactions and foreign keys.
 Others storage engines should have other behaviors, certainly more
 lax, which is not expected to my mind by a _RDBM_.
 {% endadmonition %}
@@ -36,7 +36,7 @@ MariaDB []> SHOW ENGINES;
 # Abstract
 
 The development of _MySQL_ began the 1995-11 under the _GNU GPL_ license and was
-acquired by _Oracle Corporation_ in 2010.  
+acquired by _Oracle Corporation_ in 2010.
 Due to its acquisition by _Oracle Corporation_, _MariaDB_ was born as a fork of
 _MySQL_ in 2010-02-01.
 
@@ -48,7 +48,7 @@ whereas _MySQL/MariaDB_ did not have or have implemented badly.
 
 You will find [in this article](https://www.2ndquadrant.com/en/postgresql/postgresql-vs-mysql/)
 and in [this one](http://www.postgresqltutorial.com/postgresql-vs-mysql/) a full comparison
-of _MySQL/MariaDB_ with _PostgreSQL_.  
+of _MySQL/MariaDB_ with _PostgreSQL_.
 Here a summary of the main differences.
 
 ## _PostgreSQL_ pros, _MySQL/MariaDB_ cons
@@ -131,7 +131,7 @@ You can manage how _Mariadb_ handles notes, warning and errors by setting the va
 The documentation is
 [here](https://mariadb.com/kb/en/library/sql-mode/) and show how
 implement a really complex (so bad) warning/error manager system.
-You can even make division by zero returns `NULL` !  
+You can even make division by zero returns `NULL` !
 We'll use in this article the default setting for `SQL_MODE`.
 
 _PostgreSQL_ is **always** very strict about data integrity and validity when
@@ -142,7 +142,7 @@ server to a strict SQL mode (`STRICT_ALL_TABLES` or `STRICT_TRANS_TABLES`).
 ## Data type handling
 
 As describe [in this article](https://www.cybertec-postgresql.com/en/why-favor-postgresql-over-mariadb-mysql/),
-the data type handling in _MySQL/MariaDB_ is not at all clever.  
+the data type handling in _MySQL/MariaDB_ is not at all clever.
 Here some examples :
 
 ```text
@@ -260,7 +260,7 @@ MariaDB [test]> SELECT * FROM data;
 > +----+------+
 ```
 
-Null value becomes 0…  
+Null value becomes 0…
 Let see what appends with _PostgreSQL_ :
 
 ```text
@@ -314,7 +314,7 @@ postgres=# SELECT * FROM data;
 >   1 | 5.61 | 2018-05-10
 ```
 
-All is right with _PostgreSQL_ !  
+All is right with _PostgreSQL_ !
 One more time _MySQL/MariaDB_ tends to be fancy but fails on data integrity and coherence !
 However, testing the insertion of `NULL` values with _MySQL/MariaDB_, we have a good surprise :
 
@@ -324,7 +324,7 @@ MariaDB [test]> INSERT INTO data VALUES (1, 0, NULL);
 ```
 
 Correct `DATE NOT NULL` handling seems a good news. Note that _MySQL/MariaDB_ inserts
-`0000-00-00` when `a_date` is null with the _Myisam_ storage engine…  
+`0000-00-00` when `a_date` is null with the _Myisam_ storage engine…
 Wait, see this one…
 
 ```
@@ -343,8 +343,8 @@ MariaDB [test]> SELECT * FROM data WHERE id=-1;
 > +----+------+------------+
 ```
 
-Wouhahahaaa, `0000-00-00` is a date in a calendar of the space cake.  
-_MySQL/MariaDB_ handles correctly the `NOT NULL` constraints when inserting, not when updating ! (WTF ?).  
+Wouhahahaaa, `0000-00-00` is a date in a calendar of the space cake.
+_MySQL/MariaDB_ handles correctly the `NOT NULL` constraints when inserting, not when updating ! (WTF ?).
 Let's see for wrong dates handling…
 
 ```
@@ -377,10 +377,10 @@ MariaDB [test]> SELECT * FROM data WHERE id=999;
 > +-----+------+------------+
 ```
 
-**What** ?  
-We can insert a wrong date but the data recorded will be reset to `0000-00-00`  
+**What** ?
+We can insert a wrong date but the data recorded will be reset to `0000-00-00`
 In this case, we absolutely can not be sure of the values recorded in
-the database and eventually post correct then.  
+the database and eventually post correct then.
 How _PostgreSQL_ handle this data ?
 
 ```
@@ -408,7 +408,7 @@ _PostgreSQL_ computation with time have natural writing whereas _MySQL/MariaDB_ 
 functional design. For example, to subtract date _MySQL/MariaDB_ provides the
 functions `TIMESTAMPDIFF`, `DATEDIFF` or `DATE_SUB` or `SUBTIME` etc whereas
 _PostgreSQL_ use natural subtraction writing with hard typing via
-casting, no need to remember tone of functions.  
+casting, no need to remember tone of functions.
 Also, _PostgreSQL_ has a real `INTERVAL` type which allow use to work very
 efficiently with time operation :
 
@@ -424,8 +424,8 @@ Let's the how the syntax and behaviors diverge…
 
 With _PostgreSQL_ is very easy to subtract a time interval to a given date :
 
-```
-postgres=# SELECT '2017-06-15 23:30'::timestamp
+```text
+postgress=# SELECT '2017-06-15 23:30'::timestamp
            - interval '1 year 3 months 1 day 2 hours 25 seconds' AS result;
 >        result
 > ---------------------
@@ -436,7 +436,7 @@ I do not know how to just do the same thing with _MySQL/MariaDB_, leave a commen
 
 ## Subtracting Dates
 
-```
+```text
 postgres=# SELECT '2017-06-15 23:30'::timestamp - '2015-02-19 12:25:19'::timestamp AS result;
       result
 -------------------
@@ -446,7 +446,7 @@ postgres=# SELECT '2017-06-15 23:30'::timestamp - '2015-02-19 12:25:19'::timesta
 With _MySQL/MariaDB_, `TIME` values may range from '-838:59:59' to
 '838:59:59'. WTF ? It's not serious !
 
-```
+```text
 MariaDB [(none)]> SELECT TIMEDIFF('2017-06-15 23:30:00', '2015-02-19 12:25:19') AS result;
 +-----------+
 | result    |
@@ -466,7 +466,7 @@ MariaDB [(none)]> SHOW WARNINGS;
 
 ## Is this a Bug ?
 
-```
+```text
 MariaDB [(none)]> SELECT SUBTIME('2017-06-15 23:30:0.0', '1-0-1 2:0:25') AS result;
 > +--------+
 > | result |
@@ -481,7 +481,7 @@ No warnings ! All is right for _MySQL/MariaDB_…
 # Conclusion
 
 We have showed in this article that _PostgreSQL_ has much more features than _MySQL/MariaDB_,
-a better documentation and a better functional design in many ways.  
+a better documentation and a better functional design in many ways.
 We have also showed that _PostgreSQL_ is always very strict for the data
 integrity whereas _MySQL/MariaDB_ with the default `SQL_MODE` setting has critical
 faults. Whereas, we can raise the rigor of _MySQL/MariaDB_ *near but

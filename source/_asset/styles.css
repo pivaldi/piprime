@@ -1,6 +1,41 @@
 body p {
   line-height: 1.5;
 }
+
+.posts-expand .post-body figure img {
+  margin-bottom: 0;
+}
+
+figcaption {
+  text-align: center;
+  /* display: flex; */
+  /* flex-direction: row; */
+  /* justify-content: space-around; */
+  /* align-items: flex-start; */
+}
+
+/* figcaption > div { */
+/*   width: 20%; */
+/*   order: 0; */
+/* } */
+
+/* figcaption div.caption { */
+/*   text-align: center; */
+/*   width: 60%; */
+/*   order: 1; */
+/*   font-style: bold; */
+/* } */
+
+figcaption span.src {
+  /* text-align: right; */
+  /* width: 0px; */
+  float: right;
+  position: absolute;
+  margin-left: 10px;
+  font-size: 50%;
+  font-style: italic;
+}
+
 .github-corner:hover .octo-arm {
   animation: octocat-wave 560ms ease-in-out;
 }

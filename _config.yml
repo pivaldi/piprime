@@ -19,7 +19,7 @@ markdown:
     - markdown-it-sub
     - markdown-it-sup
   anchors:
-    level: 2
+    level: 3
     collisionSuffix: 'v'
     permalink: true
     permalinkClass: header-anchor

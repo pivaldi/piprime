@@ -94,11 +94,11 @@ while true; do
 done
 
 # Recupere le texte qui se trouve entre les balises <body> et </body>
-function bodyinner() {
+bodyinner() {
   cat $1 | awk -v FS="^Z" "/<body>/,/<\/body>/" | sed "s/<\/*body>//g" | sed 's/^ *<pre>/<pre class="asymptote">/g'
 }
 
-function get_asy_files() {
+get_asy_files() {
   if $ODOC; then
     find "$SRC_DIR" -type f -name '*\.asy' $nofind -print | sort -r
   else
@@ -112,6 +112,7 @@ mkdirIfNotExits() {
     mkdir -p "$1" || exit 1
   }
 }
+
 
 CREATECODE=false # Par defaut il n'y a pas a recreer code.xml et index.html
 
@@ -134,6 +135,8 @@ for fic in $(get_asy_files); do
 
   mkdirIfNotExits "$currentDestDir"
   mkdirIfNotExits "$destAssetPath"
+
+  [ "$category" == "Tailpieces" ] && continue
 
   tagsStr=''
   isFirstTag=true
@@ -170,10 +173,14 @@ for fic in $(get_asy_files); do
   # if [ "${srcFile}" -nt "${destFileMd}" ]; then
   echo "Creating ${destFileMd}"
   # content=$(cat ${srcFile})
-  content=$(bodyinner ${srcFileHtml} | sed 's/geometry_dev/geometry/g')
+  content=$(bodyinner ${srcFileHtml} | sed 's/geometry_dev/geometry/g;s/{/\&lbrace;/g;s/}/\&rbrace;/g')
   # echo $content
   # exit 0
   postId=$(cat ${srcFilePostId})
+
+  [ -z $postId ] && {
+    postId=$(cat /dev/urandom | tr -dc 'a-z0-9' | fold -w 18 | head -n 1)
+  }
 
   partialTitle="$category $firstTag"
   [ "$category" == "$firstTag" ] && partialTitle=$category
@@ -182,7 +189,7 @@ for fic in $(get_asy_files); do
 
   ## Not used now because of problem whith rel url
   #  See https://hexo.io/docs/asset-folders.html
-  imgMdk="![alt asymptote ${category} ${tags} ${srcFileNameNoExt}](${destAssetBaseURL}/${outPutFileName} \"${srcFileNameNoExt}\")"
+  imgMdk="![asymptote ${category} ${tags} ${srcFileNameNoExt}](${destAssetBaseURL}/${outPutFileName} \"${srcFileNameNoExt}\")"
 
   ## Using this one instead, waiting for best solution
   # imgMdk="{% asset_img out.png "${srcFileNameNoExt}" %}"
@@ -191,7 +198,7 @@ for fic in $(get_asy_files); do
     tagsStr="tags:${tagsStr}"
   }
 
-  sleep 1
+  # sleep 1
   cat >"$destFileMd" <<EOF
 title: "Asymptote ${partialTitle} -- ${srcFileNameNoExt}"
 date: 2013-7-13 $(date "+%H:%M:%S")
