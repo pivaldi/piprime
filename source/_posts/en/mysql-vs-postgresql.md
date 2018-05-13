@@ -1,10 +1,10 @@
-title: Why use _PostgreSQL_ instead of _MySQL/MariaDB_ ?
+title: PostgreSQL vs MySQL/MariaDB ?
 date: 2018-05-07 15:39:30
 id: cqqw2cq47idtd7i
 categories:
 - [Tech, Programming, Database, MySQL/MariaDB]
 - [Tech, Programming, Database, PostgreSQL]
-- tags:
+tags:
     Versus
 ---
 

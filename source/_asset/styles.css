@@ -8,27 +8,9 @@ body p {
 
 figcaption {
   text-align: center;
-  /* display: flex; */
-  /* flex-direction: row; */
-  /* justify-content: space-around; */
-  /* align-items: flex-start; */
 }
 
-/* figcaption > div { */
-/*   width: 20%; */
-/*   order: 0; */
-/* } */
-
-/* figcaption div.caption { */
-/*   text-align: center; */
-/*   width: 60%; */
-/*   order: 1; */
-/*   font-style: bold; */
-/* } */
-
 figcaption span.src {
-  /* text-align: right; */
-  /* width: 0px; */
   float: right;
   position: absolute;
   margin-left: 10px;
@@ -36,31 +18,10 @@ figcaption span.src {
   font-style: italic;
 }
 
-.github-corner:hover .octo-arm {
-  animation: octocat-wave 560ms ease-in-out;
+.fancybox-container .fancybox-slide .fancybox-image-wrap {
+  background: white;
 }
-@keyframes octocat-wave {
-  0%,
-  100% {
-    transform: rotate(0);
-  }
-  20%,
-  60% {
-    transform: rotate(-25deg);
-  }
-  40%,
-  80% {
-    transform: rotate(10deg);
-  }
-}
-@media (max-width: 500px) {
-  .github-corner:hover .octo-arm {
-    animation: none;
-  }
-  .github-corner .octo-arm {
-    animation: octocat-wave 560ms ease-in-out;
-  }
-}
+
 pre.asymptote {
   font-family: "Bitstream Vera Sans Mono", "courier new", sans-serif;
   /* padding:0; */
@@ -70,6 +31,11 @@ pre.asymptote {
   /* background: #2f4f4f; */
   background: #222222;
 }
+
+pre.asymptote a {
+  color: #ddd;
+}
+
 pre.asymptote ._pcss {
   color: #fff;
 }
@@ -154,7 +120,7 @@ html .admonition > :last-child {
   margin: 1em 0;
 }
 .admonition > .admonition-title {
-  margin: 0 -1.2rem;
+  margin: 0 -1.2rem 0.4em -1.2em;
   padding: 0.4rem 1.2rem 0.4rem 2rem;
   border-bottom: 0.1rem solid rgba(0, 0, 255, 0.1);
   background-color: rgba(0, 0, 255, 0.1);

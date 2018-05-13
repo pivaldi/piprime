@@ -4,7 +4,7 @@ id: gxinhpw2bvwpzig
 categories:
 - Botanique
 tags:
-    "Flore de l'Abbé Coste"
+    - "Flore de l'Abbé Coste"
 ---
 {% admonition info Copyright %}
 Extrait du livre « [Flore descriptive et illustrée de la France de la Corse et des contrées limitrophes](http://www.tela-botanica.org/page:flore_de_coste) »
@@ -28,7 +28,9 @@ Organe continuant à végéter et à s'accroître après la floraison :
 - Styles de la Benoîte (fig. 2).
 
 <figure>
-<img src="/media/flore/coste/vocabulaire/fig1-2.jpg" alt="Calice du Physalis et Styles de la Benoîte" />
+<a href="/media/flore/coste/vocabulaire/fig1-2.jpg">
+<img src="/media/flore/coste/vocabulaire/fig1-2_w200.jpg" title="Cliquer pour agrandir" alt="Calice du Physalis et Styles de la Benoîte" />
+</a>
 <figcaption>
 <span>Calice accrescent du Physalis (1) et styles de la Benoîte (2)</span>
 <span class="src">Source gallica.bnf.fr / BnF</span>
@@ -54,7 +56,9 @@ Fruit sec, indéhiscent, à une seule graine libre, c'est-à-dire n'adhérant pa
 Feuilles linaires, raides et aiguës comme des aiguilles : Feuilles du Pin maritime (fig. 4).
 
 <figure>
-<img src="/media/flore/coste/vocabulaire/fig4.jpg" alt="Feuilles du Pin maritime" />
+<a href="/media/flore/coste/vocabulaire/fig4.jpg">
+<img src="/media/flore/coste/vocabulaire/fig4_w200.jpg" title="Cliquer pour agrandir" alt="Feuilles du Pin maritime" />
+</a>
 <figcaption>
 <span>Feuilles aciculaires du Pin maritime</span> <span class="src">Source gallica.bnf.fr / BnF</span>
 </figcaption>
@@ -68,7 +72,9 @@ Petits aiguillons délicats, ordinairement droits, qui recouvrent certains organ
 - Rosa pim pinellifolia (fig. 6).
 
 <figure>
-<img src="/media/flore/coste/vocabulaire/fig5-6.jpg" alt="Feuilles du Pin maritime" />
+<a href="/media/flore/coste/vocabulaire/fig5-6.jpg">
+<img src="/media/flore/coste/vocabulaire/fig5-6_h200.jpg" title="Cliquer pour agrandir" alt="Feuilles du Pin maritime" />
+</a>
 <figcaption>
 <span>Acicules de Gallica (5) et de Rosa pim pinellifolia (6)</span> <span class="src">Source gallica.bnf.fr / BnF</span>
 </figcaption>
@@ -84,7 +90,9 @@ Organe dont le sommet se termine brusquement en acumen, c'est-à-dire en pointe 
 feuilles du Bouleau (fig. 7), du tilleul.
 
 <figure>
-<img src="/media/flore/coste/vocabulaire/fig7.jpg" alt="Feuille du Bouleau" />
+<a href="/media/flore/coste/vocabulaire/fig7.jpg">
+<img src="/media/flore/coste/vocabulaire/fig7_w200.jpg" title="Cliquer pour agrandir" alt="Feuille du Bouleau" />
+</a>
 <figcaption>
 <span>Feuille acuminée du Bouleau</span> <span class="src">Source gallica.bnf.fr / BnF</span>
 </figcaption>
@@ -95,7 +103,9 @@ feuilles du Bouleau (fig. 7), du tilleul.
 Organe attaché à un autre et faisant corps avec lui : ovaire et calice du Saxifraga granulata (fig. 8).
 
 <figure>
-<img src="/media/flore/coste/vocabulaire/fig8.jpg" alt="Ovaire et calice adhérents du Saxifraga granulata" />
+<a href="/media/flore/coste/vocabulaire/fig8.jpg">
+<img src="/media/flore/coste/vocabulaire/fig8_w200.jpg" title="Cliquer pour agrandir" alt="Ovaire et calice adhérents du Saxifraga granulata" />
+</a>
 <figcaption>
 <span>Ovaire et calice adhérents du Saxifraga granulata</span> <span class="src">Source gallica.bnf.fr / BnF</span>
 </figcaption>
@@ -110,7 +120,9 @@ Plante qui vient d'un pays étranger, plus ou moins éloigné, et qui n'a pas é
 Racines qui prennent naissance directement sur la tige : Lierre, Fraisier, Violette odorante (fig. 9).
 
 <figure>
-<img src="/media/flore/coste/vocabulaire/fig9.jpg" alt="Racine adventives de la Violette odorante" />
+<a href="/media/flore/coste/vocabulaire/fig9.jpg">
+<img src="/media/flore/coste/vocabulaire/fig9_w200.jpg" title="Cliquer pour agrandir" alt="Racine adventives de la Violette odorante" />
+</a>
 <figcaption>
 <span>Racine adventives de la Violette odorante</span> <span class="src">Source gallica.bnf.fr / BnF</span>
 </figcaption>
@@ -123,7 +135,9 @@ Faisceau ou couronne de poils ou de soies terminant certains fruits : les akèn
 [Crepis albida](http://www.tela-botanica.org/bdtfx-nn-121154) (fig. 10).
 
 <figure>
-<img src="/media/flore/coste/vocabulaire/fig10.jpg" alt="Les akènes du Crepis albida forment une aigrette" />
+<a href="/media/flore/coste/vocabulaire/fig10.jpg">
+<img src="/media/flore/coste/vocabulaire/fig10_h200.jpg" title="Cliquer pour agrandir" alt="Les akènes du Crepis albida forment une aigrette" />
+</a>
 <figcaption>
 <span>Aigrette du Crepis albida</span> <span class="src">Source gallica.bnf.fr / BnF</span>
 </figcaption>
@@ -131,15 +145,234 @@ Faisceau ou couronne de poils ou de soies terminant certains fruits : les akèn
 
 ## Aigu
 
-Dont le sommet se rétrécit insensiblement en pointe : feuilles de 
+Dont le sommet se rétrécit insensiblement en pointe : feuilles de
 l'[Arenaria trinervia](http://www.tela-botanica.org/bdtfx-nn-42780) (fig. 11).
 
 <figure>
-<img src="/media/flore/coste/vocabulaire/fig11.jpg" alt="Feuilles aiguës de l'Arenarla trinervia" />
+<a href="/media/flore/coste/vocabulaire/fig11.jpg">
+<img src="/media/flore/coste/vocabulaire/fig11_w200.jpg" title="Cliquer pour agrandir" alt="Feuilles aiguës de l'Arenarla trinervia" />
+</a>
 <figcaption>
 <span>Feuilles aiguës de l'<a href="http://www.tela-botanica.org/bdtfx-nn-42780">Arenaria trinervia</a></span> <span class="src">Source gallica.bnf.fr / BnF</span>
 </figcaption>
 </figure>
+
+## Aiguillon
+
+Piquant naissant de l'écorce et se détachant sans déchirer le bois : Rosier (fig. 12).
+
+<figure>
+<a href="/media/flore/coste/vocabulaire/fig12.jpg">
+<img src="/media/flore/coste/vocabulaire/fig12_w200.jpg" title="Cliquer pour agrandir" alt="Aiguillon de rosier" />
+</a>
+<figcaption>
+<span>Aiguillon de rosier</span> <span class="src">Source gallica.bnf.fr / BnF</span>
+</figcaption>
+</figure>
+
+## Aile
+
+Membrane mince ou foliacée accompagnant certains organes :
+- les carpelles du Thalictrum aquilegifolium ;
+- la silicule du [Lepidium arvense](http://www.tela-botanica.org/bdtfx-nn-38458) (fig. 13) ;
+- les deux sépales colorés du [Polygala](http://www.tela-botanica.org/bdtfx-nn-87038-synthese) (fig. 14) ;
+- les deux pétales latéraux des [papilionacées](#papilionacée) ;
+- les tiges du [Génista sagittalis](http://www.tela-botanica.org/bdtfx-nn-29597) (fig. 15).
+
+<figure>
+<a href="/media/flore/coste/vocabulaire/fig13-14-15.jpg">
+<img src="/media/flore/coste/vocabulaire/fig13-14-15_w200.jpg" title="Cliquer pour agrandir" alt="Différentes ailes" />
+</a>
+<figcaption>
+<span>Ailes de Lepidium (13), Polygala (14) et Génista (15)</span> <span class="src">Source gallica.bnf.fr / BnF</span>
+</figcaption>
+</figure>
+
+## Ailé
+
+Pourvu d'une ou plusieurs ailes.
+
+## Akène
+
+Voir [Achaine](#achaine-achène-ou-akène).
+
+## Alternes
+
+Feuilles, parfois bractées ou fleurs, insérées une à une à des hauteurs différentes sur la tige ou
+les rameaux : Tilleul (fig. 16).
+
+<figure>
+<a href="/media/flore/coste/vocabulaire/fig16.jpg">
+<img src="/media/flore/coste/vocabulaire/fig16_w200.jpg" title="Cliquer pour agrandir" alt="Feuilles alternes du Tilleul" />
+</a>
+<figcaption>
+<span>Feuilles alternes du Tilleul</span> <span class="src">Source gallica.bnf.fr / BnF</span>
+</figcaption>
+</figure>
+
+## Alvéolé
+
+Marqué de petites fossettes anguleuses nommées alvéoles : réceptacle de plusieurs Composées ; fruit
+de la Pimprenelle (fig. 17).
+
+<figure>
+<a href="/media/flore/coste/vocabulaire/fig17.jpg">
+<img src="/media/flore/coste/vocabulaire/fig17_w200.jpg" title="Cliquer pour agrandir" alt="Fruit agrandi de la Pimprenelle" />
+</a>
+<figcaption>
+<span>Fruit agrandi de la Pimprenelle</span> <span class="src">Source gallica.bnf.fr / BnF</span>
+</figcaption>
+</figure>
+
+## Amplexicaule
+
+Feuille ou bractée à base élargie embrassant plus ou moins la tige ou le rameau : [Pavot somnifère](http://www.tela-botanica.org/bdtfx-nn-83030)
+(fig. 18).
+
+<figure>
+<a href="/media/flore/coste/vocabulaire/fig18.jpg">
+<img src="/media/flore/coste/vocabulaire/fig18_h200.jpg" title="Cliquer pour agrandir" alt="Feuille amplexicaule du Pavot" />
+</a>
+<figcaption>
+<span>Feuille amplexicaule du Pavot</span> <span class="src">Source gallica.bnf.fr / BnF</span>
+</figcaption>
+</figure>
+
+## Anastomosées
+
+Nervures ramifiées, saillantes, se réunissant entre elles en réseau par leur sommet : bractée du
+Tilleul (fig. 19) ; calice du [Silene inflata](http://www.tela-botanica.org/bdtfx-nn-64434) (fig. 20).
+
+<figure>
+<a href="/media/flore/coste/vocabulaire/fig20.jpg">
+<img src="/media/flore/coste/vocabulaire/fig20_w200.jpg" title="Cliquer pour agrandir" alt="feuille de Tilleul (19), calice du Silene (20)" />
+</a>
+<figcaption>
+<span>feuille de Tilleul (19), calice du Silene inflata (20)</span> <span class="src">Source gallica.bnf.fr / BnF</span>
+</figcaption>
+</figure>
+
+## Ancipité
+
+Comprimé et à bords plus ou moins tranchants, comme un glaive à 2 tranchants : tige du Poa compressa
+(fig. 21).
+
+## Androgyne
+
+Épi formé de fleurs mâles et de fleurs femelles groupées sur le même pédoncule : Carex vulpina
+(fig. 22).
+
+## Angiosperme
+
+Plante à ovules et graines renfermées dans un ovaire ou péricarpe : Pommier, Poirier, toutes les
+Dicotylédones et Monocotylédones.
+
+## Annuel
+
+Plante qui naît, se développe, se reproduit et meurt dans une même année végétative : Froment,
+Seigle, Sarrasin.
+
+## Anthère
+
+Partie terminale de l'étamine renfermant le pollen (voir fleur et étamine).
+
+## Anthèse
+
+Moment de la floraison d'une plante.
+
+## Anthode
+
+Synonyme de capitule : inflorescence des Composées.
+
+## Apétale
+
+Fleur dépourvue de pétales : Frène (fig. 23).
+
+## Aphylle
+
+Plante ou tige dépourvue de feuilles : voir Aphyllanthes monspeliensis.
+
+## Apiculé
+
+Organe dont le sommet se rétrécit brusquement en pointe courte, aiguë, peu consistante ; silicule du
+Draba verna ; gousse de la Lentille (fig. 24).
+
+## Appendice
+
+Partie accessoire à quelque organe : calice du Campanula speciosa (fig. 25).
+
+## Appendiculé
+
+Muni d'appendices.
+
+## Apprimé
+
+Organe appliqué sur un autre, mais sans y adhérer : poils de la Renoncule bulbeuse (fig. 24) et du
+Potentilla verna.
+
+## Aranéeux
+
+Poils mous, fins, entrecroisés comme les fils d'une toile d'araignée : Sempervivum arachnoideum
+(fig. 27) ; Cirsium eriophorum.
+
+## Arbre
+
+Végétal ligneux atteignant au moins 5 mètres de haut : Chêne, Orme, Peuplier, Pin.
+
+## Arbrisseau ou Arbuste
+
+Petit arbre de 1 à 5 mètres, à tige se ramifiant ordinairement dès la base : Fusain, Nerprun,
+Troëne, Genévrier.
+
+## Arête
+
+Pointe filiforme, raide, terminant un organe : épillet de seigle (fig. 28), d'Avoine ; carpelles de
+la Clématite (fig. 29).
+
+## Arille
+
+Expansion du funicule enveloppant plus ou moins la graine : Fusain (fig. 30).
+
+## Aristé
+
+Organe muni d'une arête.
+
+## Article
+
+Portion d'organe se séparant d'elle-même, à une certaine époque, du reste de l'organe en un point
+nommé articulation : silique du Raphanus Raphanistrum (fig. 31).
+
+## Articulé
+
+Organe formé d'articles : silique articulée.
+
+## Ascendant
+
+Étalé à la base, puis redressé : tige du Potentilla aurea (fig. 32).
+
+## Atténué
+
+Qui diminue insensiblement de largeur ou d'épaisseur, soit à la base, soit au sommet : feuilles de
+Silene (fig. 33).
+
+## Auriculé
+
+Muni à la base de 2 lobes ou oreillettes : feuilles caulinaires du Camelina sativa (fig. 34).
+
+## Avorté
+
+Organe arrêté dans son développement : silicules du Capsella gracilis (fig. 35) (forme du
+C. bursa-pastoris).
+
+## Axe
+
+Ligne passant par le centre d'un corps ; pédoncule commun sur lequel sont fixés les fleurs, les
+fruits, les pédicelles, etc. : épi du seigle (fig. 36).
+
+## Axillaire
+
+Placé à l'aisselle d'une feuille, d'une bractée, d'un rameau : fleurs de la Cardiaque (fig. 37), du
+Lierre terrestre.
 
 # B
 
