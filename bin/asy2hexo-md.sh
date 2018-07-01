@@ -100,9 +100,9 @@ bodyinner() {
 
 get_asy_files() {
     if $ODOC; then
-        find "$SRC_DIR" -type f -name '*\.asy' $nofind -print | sort -r
+        find "$SRC_DIR" -type f -name '*\.asy' $nofind -print | sort
     else
-        find "$SRC_DIR" -name 'fig*\.asy' -type f -print | sort -r
+        find "$SRC_DIR" -name 'fig*\.asy' -type f -print | sort
     fi
 }
 
@@ -127,9 +127,9 @@ for fic in $(get_asy_files); do
     srcFilePath="${fic%/*}"
     srcFileDirName=$(basename "$srcFilePath")
     currentDestDir="${DEST_DIR}/${srcFileDirName}"
-    destFileNoExt="${DEST_DIR}/${srcFileDirName}/${srcFileNameNoExt}"
-    destFileMd="${destFileNoExt}.md"
     category=$(echo ${srcFileDirName} | awk 'sub(/./,toupper(substr($1,1,1)),$1)')
+    destFileNoExt="${DEST_DIR}/${srcFileDirName}/${category}"
+    destFileMd="${destFileNoExt}.md"
     destAssetPath="${DEST_MEDIA_DIR}/${srcFileDirName}"
     destAssetBaseURL="${DEST_MEDIA_BASE_URL}/${srcFileDirName}"
 
@@ -224,16 +224,23 @@ This animation is also available in the [Syracuse web site](http://www.melusine.
 "
     }
 
+    [ ! -e "$destFileMd" ] && {
     sleep 1
     cat >"$destFileMd" <<EOF
-title: "Asymptote ${partialTitle} -- ${srcFileNameNoExt}"
+title: "Asymptote ${category}"
 date: 2013-7-13 $(date "+%H:%M:%S")
 id: $postId
 categories:
-- [Tech, Programming, Asymptote, $category]
+- [Tech, Programming, Asymptote]
 tags:
-- asymptote
+- "asymptote ${category}"
 ---
+EOF
+    }
+
+    cat >>"$destFileMd" <<EOF
+
+# ${srcFileNameNoExt}
 
 $imgMdk
 
@@ -241,6 +248,7 @@ This code was compiled with [Asymptote](http://asymptote.sourceforge.net/) ${asy
 
 $content
 EOF
+
 
 
     # fi
