@@ -248,19 +248,34 @@ Tilleul (fig. 19) ; calice du [Silene inflata](http://www.tela-botanica.org/bdtf
 <img src="/media/flore/coste/vocabulaire/fig20_w200.jpg" title="Cliquer pour agrandir" alt="feuille de Tilleul (19), calice du Silene (20)" />
 </a>
 <figcaption>
-<span>feuille de Tilleul (19), calice du Silene inflata (20)</span> <span class="src">Source gallica.bnf.fr / BnF</span>
+<span>Feuille de Tilleul (19), calice du Silene inflata (20)</span> <span class="src">Source gallica.bnf.fr / BnF</span>
 </figcaption>
 </figure>
 
 ## Ancipité
 
-Comprimé et à bords plus ou moins tranchants, comme un glaive à 2 tranchants : tige du Poa compressa
-(fig. 21).
+Comprimé et à bords plus ou moins tranchants, comme un glaive à 2 tranchants : tige du Poa compressa (fig. 21).
+
+<figure>
+<a href="/media/flore/coste/vocabulaire/fig21.jpg">
+<img src="/media/flore/coste/vocabulaire/fig21_h200.jpg" title="Cliquer pour agrandir" alt="Tige du Poa compressa" />
+</a>
+<figcaption>
+<span>Tige du <a href="http://www.tela-botanica.org/bdtfx-nn-50413-synthese">Poa compressa</a></span> <span class="src">Source gallica.bnf.fr / BnF</span>
+</figcaption>
+</figure>
 
 ## Androgyne
 
-Épi formé de fleurs mâles et de fleurs femelles groupées sur le même pédoncule : Carex vulpina
-(fig. 22).
+Épi formé de fleurs mâles et de fleurs femelles groupées sur le même pédoncule (fig. 22).
+<figure>
+<a href="/media/flore/coste/vocabulaire/fig22.jpg">
+<img src="/media/flore/coste/vocabulaire/fig22_h200.jpg" title="Cliquer pour agrandir" alt="Épi de Carex vulpina" />
+</a>
+<figcaption>
+<span>Épi de <a href="http://www.tela-botanica.org/bdtfx-nn-14515-synthese">Carex vulpina</a></span> <span class="src">Source gallica.bnf.fr / BnF</span>
+</figcaption>
+</figure>
 
 ## Angiosperme
 
@@ -288,18 +303,45 @@ Synonyme de capitule : inflorescence des Composées.
 
 Fleur dépourvue de pétales : Frène (fig. 23).
 
+<figure>
+<a href="/media/flore/coste/vocabulaire/fig23.jpg">
+<img src="/media/flore/coste/vocabulaire/fig23_h200.jpg" title="Cliquer pour agrandir" alt="Fleur de frène, dépourvue de pétale" />
+</a>
+<figcaption>
+<span>Fleur de frène, dépourvue de pétale</span> <span class="src">Source gallica.bnf.fr / BnF</span>
+</figcaption>
+</figure>
+
 ## Aphylle
 
-Plante ou tige dépourvue de feuilles : voir Aphyllanthes monspeliensis.
+Plante ou tige dépourvue de feuilles : voir [Aphyllanthes monspeliensis](http://www.tela-botanica.org/bdtfx-nn-5615-synthese).
 
 ## Apiculé
 
 Organe dont le sommet se rétrécit brusquement en pointe courte, aiguë, peu consistante ; silicule du
 Draba verna ; gousse de la Lentille (fig. 24).
 
+<figure>
+<a href="/media/flore/coste/vocabulaire/fig24.jpg">
+<img src="/media/flore/coste/vocabulaire/fig24_w200.jpg" alt="gousse de lentille" />
+</a>
+<figcaption>
+<span>Gousse de lentille</span> <span class="src">Source gallica.bnf.fr / BnF</span>
+</figcaption>
+</figure>
+
 ## Appendice
 
 Partie accessoire à quelque organe : calice du Campanula speciosa (fig. 25).
+
+<figure>
+<a href="/media/flore/coste/vocabulaire/fig25.jpg">
+<img src="/media/flore/coste/vocabulaire/fig25_h200.jpg" alt="calice du Campanula speciosa" />
+</a>
+<figcaption>
+<span>Calice du <a href="http://www.tela-botanica.org/bdtfx-nn-75454-synthese">Campanula speciosa</a></span> <span class="src">Source gallica.bnf.fr / BnF</span>
+</figcaption>
+</figure>
 
 ## Appendiculé
 

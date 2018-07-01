@@ -2,10 +2,10 @@ title: PostgreSQL vs MySQL/MariaDB ?
 date: 2018-05-07 15:39:30
 id: cqqw2cq47idtd7i
 categories:
-- [Tech, Programming, Database, MySQL/MariaDB]
-- [Tech, Programming, Database, PostgreSQL]
+- [Tech, Programming, Database]
 tags:
-    Versus
+- MySQL/MariaDB
+- PostgreSQL
 ---
 
 {% admonition info Note %}
@@ -65,11 +65,11 @@ Here a summary of the main differences.
   > if you use any of CREATE, ALTER, DROP, GRANT, REVOKE, you are
   > implicitly committing at execution time.
   >> [Source mariadb.com](https://mariadb.com/kb/en/library/rollback/)
-- ["Analytic functions"/"Window Functions"](https://www.postgresql.org/docs/9.1/static/tutorial-window.HTML) (see examples [here](http://www.postgresqltutorial.com/postgresql-window-function/))
+- ["Analytic functions"/"Window Functions"](https://www.postgresql.org/docs/current/static/tutorial-window.html) (see examples [here](http://www.postgresqltutorial.com/postgresql-window-function/))
   does not exist in _MySQL/MariaDB_ ;
 - Many advanced types such as
   **[json with NoSQL functionalities](https://www.postgresql.org/docs/9.3/static/datatype-json.html)**,
-  _array_, _hstore_, **[user-defined types](https://www.postgresql.org/docs/current/static/xtypes.html)**, _IP_ address data type, [UID](https://www.postgresql.org/docs/current/static/datatype-uuid.html), etc are not available in _MySQL/MariaDB_ ;
+  _array_, _hstore_, **[user-defined types](https://www.postgresql.org/docs/current/static/xtypes.html)**, _IP_ address data type, [UUID](https://www.postgresql.org/docs/current/static/datatype-uuid.html), etc are not available in _MySQL/MariaDB_ ;
 - _PostgreSQL_ has a real boolean type (true/false) whereas _MySQL/MariaDB_ use `TINYINT(1)` to mimic boolean type ;
 - In _PostgreSQL_ the default column value can be both constant or function call. In _MySQL/MariaDB_
   the default column value must be a constant or `CURRENT_TIMESTAMP` or
@@ -102,6 +102,11 @@ Here a summary of the main differences.
 - _MySQL/MariaDB_ has unsigned integer type, _PostgreSQL_ does not ;
 - _MySQL/MariaDB_ has `RANGE`, `LIST`, `HASH`, `KEY`, and composite partitioning
   table whereas _PostgreSQL_ has only `RANGE`, `LIST` partitioning table ;
+- _MySQL/MariaDB_ may use different engines' storage in the same database ; this is useful for
+  in-memory table for example. However if you're hitting a table a lot, it should all migrate
+  automatically into kernel disk buffers. Ultimate solution is to use the
+  [In-Memory Columnar Store extension for PostgreSQL](https://github.com/knizhnik/imcs)
+  which is documented [here](http://www.garret.ru/imcs/user_guide.html).
 
 # Administrative command lines
 

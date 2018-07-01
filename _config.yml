@@ -23,7 +23,7 @@ markdown:
     collisionSuffix: 'v'
     permalink: true
     permalinkClass: header-anchor
-    permalinkSymbol: ¶
+    permalinkSymbol:  🔗
 
 # Site
 title: PIPRIME.FR

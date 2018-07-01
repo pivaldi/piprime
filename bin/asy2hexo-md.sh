@@ -189,7 +189,7 @@ for fic in $(get_asy_files); do
     #  See https://hexo.io/docs/asset-folders.html
     imgAlt="asymptote ${category} ${tags} ${srcFileNameNoExt}"
     imgMdk="![${imgAlt}](${destAssetBaseURL}/${srcFileNameNoExt}.png \"${srcFileNameNoExt}\")"
-    asyversion="$(sed 's/ \[.*\]//g;s/ version //g' ${srcFileVersion})"
+    asyversion="$(sed 's/ \[.*\]//g;s/Asymptote version //g' ${srcFileVersion})"
 
     [ "$tagsStr" == "" ] || {
         tagsStr="tags:${tagsStr}"
@@ -224,19 +224,20 @@ This animation is also available in the [Syracuse web site](http://www.melusine.
 "
     }
 
-    # sleep 1
+    sleep 1
     cat >"$destFileMd" <<EOF
 title: "Asymptote ${partialTitle} -- ${srcFileNameNoExt}"
 date: 2013-7-13 $(date "+%H:%M:%S")
 id: $postId
 categories:
 - [Tech, Programming, Asymptote, $category]
-${tagsStr}
+tags:
+- asymptote
 ---
 
 $imgMdk
 
-This code was compiled with ${asyversion}
+This code was compiled with [Asymptote](http://asymptote.sourceforge.net/) ${asyversion}
 
 $content
 EOF
