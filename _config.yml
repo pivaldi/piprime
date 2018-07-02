@@ -59,7 +59,10 @@ new_post_name: :title.md
 default_layout: post
 titlecase: false # Transform title into titlecase
 external_link: false # Open external links in new tab
-filename_case: 0
+
+# Make category url and tag url lower case ?
+# assign 1 for lower case, 2 for upper case, otherwise do nothing
+filename_case: 1
 render_drafts: false
 post_asset_folder: false
 relative_link: false

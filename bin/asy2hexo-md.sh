@@ -98,11 +98,16 @@ bodyinner() {
     cat $1 | awk -v FS="^Z" "/<body>/,/<\/body>/" | sed "s/<\/*body>//g" | sed 's/^ *<pre>/<pre class="asymptote">/g'
 }
 
+get_asy_directories() {
+    find "${SRC_DIR}" -type d ! -regex "${SRC_DIR}" ! -regex '.*/modules.*' -maxdepth 1 -print | sort
+}
+
+# $1 is the directory to find
 get_asy_files() {
     if $ODOC; then
-        find "$SRC_DIR" -type f -name '*\.asy' $nofind -print | sort
+        find "${1}" -type f -name '*\.asy' $nofind -print | sort
     else
-        find "$SRC_DIR" -name 'fig*\.asy' -type f -print | sort
+        find "${1}" -name 'fig*\.asy' -type f -print | sort
     fi
 }
 
@@ -115,105 +120,106 @@ mkdirIfNotExits() {
 
 CREATECODE=false # Par defaut il n'y a pas a recreer code.xml et index.html
 
-for fic in $(get_asy_files); do
-    srcFile="$fic" # Renaming
-    echo "-> Handling $srcFile"
-    srcFileNoExt="${srcFile%.*}"
-    srcFileTag="${srcFileNoExt}.tag"
-    srcFileVersion="${srcFileNoExt}.ver"
-    srcFileHtml="${srcFileNoExt}.html"
-    srcFilePostId="${srcFileNoExt}.postid"
-    srcFileNameNoExt=$(basename "$srcFileNoExt")
-    srcFilePath="${fic%/*}"
-    srcFileDirName=$(basename "$srcFilePath")
-    currentDestDir="${DEST_DIR}/${srcFileDirName}"
-    category=$(echo ${srcFileDirName} | awk 'sub(/./,toupper(substr($1,1,1)),$1)')
-    destFileNoExt="${DEST_DIR}/${srcFileDirName}/${category}"
-    destFileMd="${destFileNoExt}.md"
-    destAssetPath="${DEST_MEDIA_DIR}/${srcFileDirName}"
-    destAssetBaseURL="${DEST_MEDIA_BASE_URL}/${srcFileDirName}"
-
-    mkdirIfNotExits "$currentDestDir"
-    mkdirIfNotExits "$destAssetPath"
-
-    [ "$category" == "Tailpieces" ] && continue
-
+for dir in $(get_asy_directories); do
     tagsStr=''
-    isFirstTag=true
-    firstTag=''
     tags=''
-    space=''
 
-    [ -e ${srcFileTag} ] && {
-        for tag in $(cat ${srcFileTag}); do
-            tag=$(
-                echo $tag | awk -F '|' '{print $3}' |
-                    awk -F '|' '{for(i=1;i<=NF;i++)sub(/./,toupper(substr($i,1,1)),$i)}2' |
-                    tr ' /' '__'
-               )
+    echo "* Handling directory : ${dir}..."
 
-            [ "$tag" == "" ] || {
-                $isFirstTag && firstTag=$tag
-                tags="${tags}${space}${tag}"
-                space=' '
-                isFirstTag=false
-                tagsStr="${tagsStr}
-- \"Asy-${tag}\""
-            }
+    for fic in $(get_asy_files ${dir}); do
+        srcFile="$fic" # Renaming
+        echo "-> Handling $srcFile"
+        srcFileNoExt="${srcFile%.*}"
+        srcFileTag="${srcFileNoExt}.tag"
+        srcFileVersion="${srcFileNoExt}.ver"
+        srcFileHtml="${srcFileNoExt}.html"
+        srcFilePostId="${srcFileNoExt}.postid"
+        srcFileNameNoExt=$(basename "$srcFileNoExt")
+        srcFilePath="${fic%/*}"
+        srcFileDirName=$(basename "$srcFilePath")
+        currentDestDir="${DEST_DIR}/${srcFileDirName}"
+        category=$(echo ${srcFileDirName} | awk 'sub(/./,toupper(substr($1,1,1)),$1)')
+        destFileNoExt="${DEST_DIR}/${srcFileDirName}/${category}"
+        destFileMd="${destFileNoExt}.md"
+        destAssetPath="${DEST_MEDIA_DIR}/${srcFileDirName}"
+        destAssetBaseURL="${DEST_MEDIA_BASE_URL}/${srcFileDirName}"
 
-        done
-    }
+        mkdirIfNotExits "$currentDestDir"
+        mkdirIfNotExits "$destAssetPath"
 
-    # le tag ADDPDF permet de mettre un lien vers le fichier .pdf
-    COMB="s/ADDPDF/<a href=\"###DIRNAME###${destAssetPath}/out.pdf\">${srcFileNameNoExt}.pdf<\/a>/g"
+        [ "$category" == "Tailpieces" ] && continue
 
-    # *=======================================================*
-    # *...Creation du fichier .md a partir du fichier .asy....*
-    # *=======================================================*
-    # if [ "${srcFile}" -nt "${destFileMd}" ]; then
-    echo "Creating ${destFileMd}"
-    # content=$(cat ${srcFile})
-    content=$(bodyinner ${srcFileHtml} | sed 's/geometry_dev/geometry/g;s/{/\&lbrace;/g;s/}/\&rbrace;/g')
-    # echo $content
-    # exit 0
-    postId=$(cat ${srcFilePostId})
+        tagsFig=''
+        tagSpace=''
 
-    [ -z $postId ] && {
-        postId=$(cat /dev/urandom | tr -dc 'a-z0-9' | fold -w 18 | head -n 1)
-    }
+        [ -e ${srcFileTag} ] && {
+            for tag in $(cat ${srcFileTag}); do
+                tag=$(
+                    echo $tag | awk -F '|' '{print $3}' |
+                        awk -F '|' '{for(i=1;i<=NF;i++)sub(/./,toupper(substr($i,1,1)),$i)}2' |
+                        tr ' /' '__'
+                   )
 
-    partialTitle="$category $firstTag"
-    [ "$category" == "$firstTag" ] && partialTitle=$category
+                [ "$tag" == "" ] || {
+                    tagsFig="${tagsFig}${tagSpace}#asy-${tag}"
+                    echo $tags | grep -q "@${tag}@" || tags="${tags}@${tag}@"
+                    tagSpace=' | '
+                }
 
-    ## Not used now because of problem whith rel url
-    #  See https://hexo.io/docs/asset-folders.html
-    imgAlt="asymptote ${category} ${tags} ${srcFileNameNoExt}"
-    imgMdk="![${imgAlt}](${destAssetBaseURL}/${srcFileNameNoExt}.png \"${srcFileNameNoExt}\")"
-    asyversion="$(sed 's/ \[.*\]//g;s/Asymptote version //g' ${srcFileVersion})"
+            done
+        }
 
-    [ "$tagsStr" == "" ] || {
-        tagsStr="tags:${tagsStr}"
-    }
+        [ "$tagsFig" == "" ] || {
+            tagsFig="
+Tags for this figure : ${tagsFig}"
+        }
+        # le tag ADDPDF permet de mettre un lien vers le fichier .pdf
+        COMB="s/ADDPDF/<a href=\"###DIRNAME###${destAssetPath}/out.pdf\">${srcFileNameNoExt}.pdf<\/a>/g"
 
-    cp "${srcFileNoExt}.png" "${destAssetPath}/"
-    [ -e "${srcFileNoExt}r.png" ] && {
-        cp "${srcFileNoExt}r.png" "${destAssetPath}/"
+        # *=======================================================*
+        # *...Creation du fichier .md a partir du fichier .asy....*
+        # *=======================================================*
+        # if [ "${srcFile}" -nt "${destFileMd}" ]; then
+        echo "Creating ${destFileMd}"
+        # content=$(cat ${srcFile})
+        content=$(bodyinner ${srcFileHtml} | sed 's/geometry_dev/geometry/g;s/{/\&lbrace;/g;s/}/\&rbrace;/g')
+        # echo $content
+        # exit 0
+        postId=$(cat ${srcFilePostId})
 
-        imgMdk="
+        [ -z $postId ] && {
+            postId=$(cat /dev/urandom | tr -dc 'a-z0-9' | fold -w 18 | head -n 1)
+        }
+
+        ## Not used now because of problem whith rel url
+        #  See https://hexo.io/docs/asset-folders.html
+        imgAlt="asymptote ${category} ${tags} ${srcFileNameNoExt}"
+        imgMdk="![${imgAlt}](${destAssetBaseURL}/${srcFileNameNoExt}.png \"${srcFileNameNoExt}\")"
+        asyversion="$(sed 's/ \[.*\]//g;s/Asymptote version //g' ${srcFileVersion})"
+
+        [ "$tagsStr" == "" ] || {
+            tagsStr="tags:${tagsStr}"
+        }
+
+        cp "${srcFileNoExt}.png" "${destAssetPath}/"
+        [ -e "${srcFileNoExt}r.png" ] && {
+            cp "${srcFileNoExt}r.png" "${destAssetPath}/"
+
+            imgMdk="
 <a href=\"${destAssetBaseURL}/${srcFileNameNoExt}.png\">
 <img src=\"${destAssetBaseURL}/${srcFileNameNoExt}r.png\"
      alt=\"${imgAlt}\"
      title=\"Click to enlarge\"
 />
 </a>"
-    }
+        }
 
-    [ -e "${srcFileNoExt}.pdf" ] && cp "${srcFileNoExt}.pdf" "${destAssetPath}/"
-    [ -e "${srcFileNoExt}.gif" ] && {
-        cp "${srcFileNoExt}.gif" "${destAssetPath}/"
+        [ -e "${srcFileNoExt}.pdf" ] && cp "${srcFileNoExt}.pdf" "${destAssetPath}/"
+        [ -e "${srcFileNoExt}.gif" ] && {
+            cp "${srcFileNoExt}.gif" "${destAssetPath}/"
 
-        imgMdk="
-<a href=\"${destAssetBaseURL}/${srcFileNameNoExt}.gif\>
+            imgMdk="
+<a href=\"${destAssetBaseURL}/${srcFileNameNoExt}.gif\">
 <img src=\"${destAssetBaseURL}/${srcFileNameNoExt}.png\"
      alt=\"${imgAlt}\"
      title=\"Click to see the animation\"
@@ -222,26 +228,27 @@ for fic in $(get_asy_files); do
 
 This animation is also available in the [Syracuse web site](http://www.melusine.eu.org/syracuse/asymptote/animations/).
 "
-    }
+        }
 
-    [ ! -e "$destFileMd" ] && {
-    sleep 1
-    cat >"$destFileMd" <<EOF
+        [ ! -e "$destFileMd" ] && {
+            sleep 1
+            cat >"$destFileMd" <<EOF
 title: "Asymptote ${category}"
 date: 2013-7-13 $(date "+%H:%M:%S")
 id: $postId
 categories:
 - [Tech, Programming, Asymptote]
-tags:
-- "asymptote ${category}"
+tags:@TAGS
 ---
 EOF
-    }
+        }
 
-    cat >>"$destFileMd" <<EOF
+        figName="$(echo ${srcFileNameNoExt} | sed 's/fig/Figure /')"
 
-# ${srcFileNameNoExt}
+        cat >>"$destFileMd" <<EOF
 
+# ${figName}
+${tagsFig}
 $imgMdk
 
 This code was compiled with [Asymptote](http://asymptote.sourceforge.net/) ${asyversion}
@@ -251,6 +258,11 @@ EOF
 
 
 
-    # fi
+        # fi
 
+    done
+
+    tagsStr=$(echo $tags | sed -E "s/@@/@/g;s/@$//g;s/@([^@]+)/£M£- \"asy-\1\"/g")
+
+    sed -i "s/tags:@TAGS/tags:${tagsStr}/g;s/£M£/\n/g" "$destFileMd"
 done
